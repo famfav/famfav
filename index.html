@@ -69,15 +69,15 @@ header.scrolled {
   font-size: 36px;
   letter-spacing: -1px;
   display: inline-block;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* letter animation */
 .logo-top span {
-  opacity: 0;
+  opacity: 1;
   display: inline-block;
-  transform: translateY(12px);
+  transform: translateY(0);
 }
 
 .logo-bottom {
@@ -120,6 +120,8 @@ header.scrolled {
 
 .hero-text {
   flex: 1 1 500px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hero-title {
@@ -168,6 +170,8 @@ header.scrolled {
   justify-content: center;
   align-items: center;
   font-weight: 600;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ABOUT */
@@ -175,6 +179,8 @@ header.scrolled {
   background: linear-gradient(180deg, #ffffff, #f3f3f3);
   padding: 100px 0;
   width: 100%;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .about-inner {
@@ -210,6 +216,8 @@ header.scrolled {
   justify-content: center;
   font-weight: 600;
   border-radius: 10px;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* FOOTER */
@@ -220,18 +228,12 @@ footer {
   color: #fff;
 }
 
-/* Fade-up animations */
+/* Disable fade-up animations */
 .fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.8s ease-out;
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1 !important;
+  transform: translateY(0) !important;
 }
 
-/* MOBILE */
 @media (max-width: 900px) {
   .hero-inner {
     flex-direction: column;
@@ -303,19 +305,8 @@ const logoContainer = document.getElementById("logoAnim");
 [...logoText].forEach((letter, i) => {
   const span = document.createElement("span");
   span.textContent = letter;
-  span.style.animation = `fadeLetter 0.6s ease forwards`;
-  span.style.animationDelay = `${i * 0.12}s`;
   logoContainer.appendChild(span);
 });
-
-// Fade letter keyframes
-const styleSheet = document.styleSheets[0];
-styleSheet.insertRule(`
-@keyframes fadeLetter {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-`, styleSheet.cssRules.length);
 
 // HEADER SCROLL EFFECT
 const header = document.getElementById("header");
@@ -323,38 +314,7 @@ window.addEventListener("scroll", () => {
   if (window.scrollY > 50) header.classList.add("scrolled");
   else header.classList.remove("scrolled");
 });
-
-// OBSERVER FOR FADE-UP ANIMATIONS
-const fadeItems = document.querySelectorAll(".fade-up");
-
-// Proper stagger index
-let delayIndex = 0;
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const el = entry.target;
-
-      // Set stagger delay
-      el.style.transitionDelay = `${delayIndex * 0.15}s`;
-      delayIndex++;
-
-      el.classList.add("visible");
-      observer.unobserve(el);
-    }
-  });
-});
-
-// Make sure items already in view become visible immediately
-fadeItems.forEach(el => {
-  observer.observe(el);
-  const rect = el.getBoundingClientRect();
-  if (rect.top < window.innerHeight) {
-    el.classList.add("visible");
-  }
-});
 </script>
-
 
 </body>
 </html>
