@@ -15,9 +15,12 @@
       font-family: 'Inter', sans-serif;
       background-color: #fff;
       color: #333;
+    }
+
+    .page {
       max-width: 1400px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto;
+      padding: 0 20px;
     }
 
     header {
@@ -70,8 +73,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 120px 40px 80px;
-      background: #ffeb3b;
+      padding: 140px 40px 100px;
+      background: linear-gradient(135deg, #ffe84d, #ffdf27);
+      border-bottom: 4px solid rgba(0,0,0,0.1);
     }
 
     .hero-text {
@@ -112,8 +116,10 @@
     }
 
     .about-section {
-      padding: 60px 40px;
-      background: linear-gradient(#ffffff, #f2f2f2);
+      padding: 80px 40px;
+      background: linear-gradient(180deg, #ffffff, #f3f3f3);
+      border-top: 4px solid rgba(0,0,0,0.05);
+      border-bottom: 4px solid rgba(0,0,0,0.05);
     }
 
     footer {
@@ -177,6 +183,7 @@
 </head>
 
 <body>
+  <div class="page">
   <header>
     <div class="logo" id="logo-animated"></div>
     <a class="kickstarter-btn" href="#">Kickstarter</a>
@@ -203,50 +210,6 @@
   <footer>
     © 2025 FamFav Games
   </footer>
-
-  <!-- JS Placeholder -->
-  <script>
-    // Split logo text into letters and fade them in one by one
-    const logo = document.getElementById('logo-animated');
-    const mainText = 'FamFav';
-    const subText = 'Games';
-
-    let html = '';
-    mainText.split('').forEach((letter, i) => {
-      html += `<span class="logo-letter" style="transition-delay:${i * 0.08}s">${letter}</span>`;
-    });
-    html += `<span class='logo-sub'>${subText}</span>`;
-
-    logo.innerHTML = html;
-
-    // Trigger fade-in once page loads
-    window.addEventListener('load', () => {
-      document.querySelectorAll('.logo-letter').forEach(l => l.classList.add('visible'));
-    });
-
-    // Fade-in hero elements
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.2 });
-
-    document.querySelectorAll('.fade-up').forEach((el, i) => {
-      el.style.transitionDelay = (i * 0.2) + 's';
-      observer.observe(el);
-    });
-
-    // Header fade-in on scroll
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    });
-  </script>
+  </div>
 </body>
 </html>
