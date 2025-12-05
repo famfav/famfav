@@ -1,215 +1,342 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FamFav Games</title>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FamFav Games</title>
 
-  <!-- Stylesheet Placeholder -->
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #fff;
-      color: #333;
-    }
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
 
-    .page {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
+<style>
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 40px;
-      background: rgba(255,255,255,0);
-      transition: background 0.4s ease, box-shadow 0.4s ease;
-      z-index: 10;
-    }
+body {
+  font-family: Inter, sans-serif;
+  background: #fff;
+  overflow-x: hidden;
+}
 
-    header.scrolled {
-      background: rgba(255,255,255,0.95);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
+/* Limit content width */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
 
-    .logo {
-      font-family: 'Gluten', cursive;
-      font-size: 2.2rem;
-      font-weight: 600;
-      line-height: 1;
-    }
+/* HEADER */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  transition: background 0.4s, box-shadow 0.4s;
+}
 
-    /* removed old logo span styling */
+header.scrolled {
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
 
-    .kickstarter-btn {
-      background-color: #2bff88;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 25px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: 0.3s;
-      text-decoration: none;
-      color: #000;
-      font-weight: 400;
-      margin-right: 10px;
-    }
+.header-inner {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
 
-    .kickstarter-btn:hover {
-      opacity: 0.8;
-    }
+/* Logo */
+.logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+  cursor: default;
+}
 
-    .hero {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 140px 40px 100px;
-      background: linear-gradient(135deg, #ffe84d, #ffdf27);
-      border-bottom: 4px solid rgba(0,0,0,0.1);
-    }
+.logo-top {
+  font-family: Gluten, cursive;
+  font-size: 36px;
+  letter-spacing: -1px;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+}
 
-    .hero-text {
-      max-width: 45%;
-    }
+/* letter animation */
+.logo-top span {
+  opacity: 0;
+  display: inline-block;
+  transform: translateY(12px);
+}
 
-    .hero-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
+.logo-bottom {
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
 
-    .hero-buttons a {
-      display: inline-block;
-      margin-right: 10px;
-      background: #000;
-      color: #fff;
-      padding: 12px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+/* Kickstarter button */
+.header-btn {
+  background: #ff6a00;
+  padding: 10px 22px;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.25s;
+  white-space: nowrap;
+}
+.header-btn:hover {
+  opacity: 0.8;
+}
 
-    .hero-buttons a:hover {
-      opacity: 0.8;
-    }
+/* HERO SECTION */
+.hero {
+  background: linear-gradient(135deg, #ffe44d, #fff06a);
+  padding-top: 160px;
+  padding-bottom: 120px;
+  width: 100%;
+}
 
-    .hero-img-placeholder {
-      width: 40%;
-      height: 250px;
-      background: #fff;
-      border: 3px dashed #333;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      font-weight: 600;
-    }
+.hero-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
 
-    .about-section {
-      padding: 80px 40px;
-      background: linear-gradient(180deg, #ffffff, #f3f3f3);
-      border-top: 4px solid rgba(0,0,0,0.05);
-      border-bottom: 4px solid rgba(0,0,0,0.05);
-    }
+.hero-text {
+  flex: 1 1 500px;
+}
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #ddd;
-      margin-top: 40px;
-    }
-      .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
 
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-      .logo-letter {
-      opacity: 0;
-      display: inline-block;
-      transform: translateY(10px);
-      transition: opacity 0.4s ease, transform 0.4s ease;
-      letter-spacing: -2px;
-    }
-    .logo-letter.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .logo-sub {
-      display: block;
-      text-align: center;
-      text-transform: uppercase;
-      font-family: 'Inter', sans-serif;
-      font-weight: 300;
-      font-size: 0.85rem;
-      margin-top: -2px;
-      letter-spacing: 2px;
-    }
-  @media (max-width: 768px) {
-      header {
-        padding: 15px 20px;
-      }
-      .hero {
-        flex-direction: column;
-        padding: 140px 20px 60px;
-      }
-      .hero-text, .hero-img-placeholder {
-        max-width: 100%;
-        width: 100%;
-      }
-      .hero-img-placeholder {
-        margin-top: 20px;
-        height: 200px;
-      }
-      .kickstarter-btn {
-        padding: 10px 18px;
-      }
-    }
-  </style>
+.hero-desc {
+  font-size: 20px;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+}
+
+.btn-kickstarter {
+  background: #ff6a00;
+  color: #fff;
+}
+
+.btn-survey {
+  background: #fff;
+  border: 2px solid #000;
+  color: #000;
+}
+
+.hero-img {
+  width: 380px;
+  height: 260px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+/* ABOUT */
+.about-section {
+  background: linear-gradient(180deg, #ffffff, #f3f3f3);
+  padding: 100px 0;
+  width: 100%;
+}
+
+.about-inner {
+  text-align: center;
+}
+
+.about-inner h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.about-inner p {
+  max-width: 800px;
+  margin: 0 auto 20px auto;
+  font-size: 18px;
+}
+
+.about-images {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.img-box {
+  width: 260px;
+  height: 170px;
+  background: #ffffff;
+  border: 3px dashed #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #222;
+  color: #fff;
+}
+
+/* Fade-up animations */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s ease-out;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero-img {
+    margin-top: 20px;
+  }
+}
+</style>
+
 </head>
-
 <body>
-  <div class="page">
-  <header>
-    <div class="logo" id="logo-animated"></div>
-    <a class="kickstarter-btn" href="#">Kickstarter</a>
-  </header>
 
-  <section class="hero">
+<!-- HEADER -->
+<header id="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-top" id="logoAnim"></div>
+      <div class="logo-bottom">GAMES</div>
+    </div>
+
+    <a href="#" class="header-btn">Kickstarter</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-inner">
     <div class="hero-text fade-up">
-      <h1 class="hero-title">Your Game Name Here</h1>
-      <p>Placeholder text describing the game and upcoming Kickstarter launch.</p>
+      <h1 class="hero-title">Your Game Title</h1>
+      <p class="hero-desc">A fun, exciting new tabletop experience — launching soon on Kickstarter!</p>
       <div class="hero-buttons">
-        <a href="#">Kickstarter</a>
-        <a href="#">Player Feedback Survey</a>
+        <a href="#" class="btn btn-kickstarter">Kickstarter</a>
+        <a href="#" class="btn btn-survey">Survey Form</a>
       </div>
     </div>
-    <div class="hero-img-placeholder fade-up">Game Image</div>
-  </section>
 
-  <section class="about-section">
+    <div class="hero-img fade-up">
+      Placeholder Image
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-section fade-up">
+  <div class="container about-inner">
     <h2>About FamFav Games</h2>
     <p>Placeholder text about your mission, story, and how people can support the project.</p>
-    <p><a href="#">Join our Email List (Mailchimp)</a></p>
-  </section>
+    <p><a href="#">Join our Email List</a></p>
 
-  <footer>
-    © 2025 FamFav Games
-  </footer>
+    <div class="about-images">
+      <div class="img-box fade-up">Image 1</div>
+      <div class="img-box fade-up">Image 2</div>
+      <div class="img-box fade-up">Image 3</div>
+    </div>
   </div>
+</section>
+
+<footer>
+  © 2025 FamFav Games — All rights reserved.
+</footer>
+
+<script>
+// LETTER-BY-LETTER LOGO ANIMATION
+const logoText = "FamFav";
+const logoContainer = document.getElementById("logoAnim");
+
+[...logoText].forEach((letter, i) => {
+  const span = document.createElement("span");
+  span.textContent = letter;
+  span.style.animation = `fadeLetter 0.6s ease forwards`;
+  span.style.animationDelay = `${i * 0.12}s`;
+  logoContainer.appendChild(span);
+});
+
+// Fade letter keyframes
+const styleSheet = document.styleSheets[0];
+styleSheet.insertRule(`
+@keyframes fadeLetter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+`, styleSheet.cssRules.length);
+
+// HEADER SCROLL EFFECT
+const header = document.getElementById("header");
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) header.classList.add("scrolled");
+  else header.classList.remove("scrolled");
+});
+
+// OBSERVER FOR FADE-UP ANIMATIONS
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add("visible");
+      }, i * 150);
+    }
+  });
+});
+
+document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+</script>
+
 </body>
 </html>
