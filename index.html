@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FamFav Games</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet Placeholder -->
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #fff;
+      color: #333;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(255,255,255,0);
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+      z-index: 10;
+    }
+
+    header.scrolled {
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .logo {
+      font-family: 'Gluten', cursive;
+      font-size: 2.2rem;
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    /* removed old logo span styling */
+
+    .kickstarter-btn {
+      background-color: #2bff88;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+      text-decoration: none;
+      color: #000;
+      font-weight: 400;
+      margin-right: 10px;
+    }
+
+    .kickstarter-btn:hover {
+      opacity: 0.8;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 120px 40px 80px;
+      background: #ffeb3b;
+    }
+
+    .hero-text {
+      max-width: 45%;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .hero-buttons a {
+      display: inline-block;
+      margin-right: 10px;
+      background: #000;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .hero-buttons a:hover {
+      opacity: 0.8;
+    }
+
+    .hero-img-placeholder {
+      width: 40%;
+      height: 250px;
+      background: #fff;
+      border: 3px dashed #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .about-section {
+      padding: 60px 40px;
+      background: linear-gradient(#ffffff, #f2f2f2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ddd;
+      margin-top: 40px;
+    }
+      .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+      .logo-letter {
+      opacity: 0;
+      display: inline-block;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .logo-letter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .logo-sub {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      margin-top: -6px;
+      letter-spacing: 1px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo" id="logo-animated"></div>
+    <a class="kickstarter-btn" href="#">Kickstarter</a>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text fade-up">
+      <h1 class="hero-title">Your Game Name Here</h1>
+      <p>Placeholder text describing the game and upcoming Kickstarter launch.</p>
+      <div class="hero-buttons">
+        <a href="#">Kickstarter</a>
+        <a href="#">Player Feedback Survey</a>
+      </div>
+    </div>
+    <div class="hero-img-placeholder fade-up">Game Image</div>
+  </section>
+
+  <section class="about-section">
+    <h2>About FamFav Games</h2>
+    <p>Placeholder text about your mission, story, and how people can support the project.</p>
+    <p><a href="#">Join our Email List (Mailchimp)</a></p>
+  </section>
+
+  <footer>
+    © 2025 FamFav Games
+  </footer>
+
+  <!-- JS Placeholder -->
+  <script>
+    // Split logo text into letters and fade them in one by one
+    const logo = document.getElementById('logo-animated');
+    const mainText = 'FamFav';
+    const subText = 'Games';
+
+    let html = '';
+    mainText.split('').forEach((letter, i) => {
+      html += `<span class="logo-letter" style="transition-delay:${i * 0.08}s">${letter}</span>`;
+    });
+    html += `<span class='logo-sub'>${subText}</span>`;
+
+    logo.innerHTML = html;
+
+    // Trigger fade-in once page loads
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.logo-letter').forEach(l => l.classList.add('visible'));
+    });
+
+    // Fade-in hero elements
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.fade-up').forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.2) + 's';
+      observer.observe(el);
+    });
+
+    // Header fade-in on scroll
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
