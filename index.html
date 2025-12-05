@@ -325,18 +325,36 @@ window.addEventListener("scroll", () => {
 });
 
 // OBSERVER FOR FADE-UP ANIMATIONS
+const fadeItems = document.querySelectorAll(".fade-up");
+
+// Proper stagger index
+let delayIndex = 0;
+
 const observer = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add("visible");
-      }, i * 150);
+      const el = entry.target;
+
+      // Set stagger delay
+      el.style.transitionDelay = `${delayIndex * 0.15}s`;
+      delayIndex++;
+
+      el.classList.add("visible");
+      observer.unobserve(el);
     }
   });
 });
 
-document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
+// Make sure items already in view become visible immediately
+fadeItems.forEach(el => {
+  observer.observe(el);
+  const rect = el.getBoundingClientRect();
+  if (rect.top < window.innerHeight) {
+    el.classList.add("visible");
+  }
+});
 </script>
+
 
 </body>
 </html>
