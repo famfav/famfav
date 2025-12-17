@@ -1,332 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>FamFav Games</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FamFav Games</title>
 
-<!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Gluten:wght@600&family=Inter:wght@200;400;600&display=swap" rel="stylesheet">
 
-<style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
 
-body {
-  font-family: Inter, sans-serif;
-  background: #000000;
-  overflow-x: hidden;
-}
-
-/* Limit content width */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
-
-/* HEADER */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 20px 0;
-  z-index: 10;
-  display: flex;
-  justify-content: center;
-  transition: background 0.4s, box-shadow 0.4s;
-}
-
-header.scrolled {
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.header-inner {
-  width: 100%;
-  max-width: 1400px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 24px;
-}
-
-/* Logo */
-.logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  line-height: 1;
-  cursor: default;
-}
-
-.logo-top {
-  font-family: Gluten, cursive;
-  font-size: 36px;
-  letter-spacing: -1px;
-  display: inline-block;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* letter animation */
-.logo-top span {
-  opacity: 1;
-  display: inline-block;
-  transform: translateY(0);
-}
-
-.logo-bottom {
-    font-size: 13px;
-    letter-spacing: 1px;
-    margin-top: -5px;
-    text-transform: uppercase;
-    font-weight: 800;
-}
-
-/* Kickstarter button */
-.header-btn {
-  background: #ff6a00;
-  padding: 10px 22px;
-  border-radius: 40px;
-  color: white;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.25s;
-  white-space: nowrap;
-}
-.header-btn:hover {
-  opacity: 0.8;
-}
-
-/* HERO SECTION */
-.hero {
-  background: linear-gradient(135deg, #ffe44d, #fff06a);
-  padding-top: 160px;
-  padding-bottom: 120px;
-  width: 100%;
-}
-
-.hero-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
-  flex-wrap: wrap;
-}
-
-.hero-text {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero-title {
-  font-size: 48px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.hero-desc {
-  font-size: 20px;
-  margin-bottom: 30px;
-  max-width: 600px;
-}
-
-.hero-button {
-    display: inline;
-    margin: 15px 15px 0px 0px;
-}
-
-.btn {
-  padding: 14px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.25s;
-  display: inline-block;
-  margin-bottom: 20px;
-}
-
-.btn-kickstarter {
-  background: #ff6a00;
-  color: #fff;
-}
-
-.btn-survey {
-  background: #fff;
-  border: 2px solid #000;
-  color: #000;
-}
-
-.hero-img {
-  width: 100%;
-  max-width: 400px;
-  height: 260px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ABOUT */
-.about-section {
-  background: linear-gradient(180deg, #ffffff, #f3f3f3);
-  padding: 100px 0;
-  width: 100%;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.about-inner {
-  text-align: center;
-}
-
-.about-inner h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-.about-inner p {
-  max-width: 800px;
-  margin: 0 auto 20px auto;
-  font-size: 18px;
-}
-
-.about-images {
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.img-box {
-  width: 260px;
-  height: 170px;
-  background: #ffffff;
-  border: 3px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  border-radius: 10px;
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* FOOTER */
-footer {
-  text-align: center;
-  padding: 30px;
-  background: #222;
-  color: #fff;
-}
-
-/* Disable fade-up animations */
-.fade-up {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-}
-
-@media (max-width: 900px) {
- .header-inner {
-     display: block;
- }
-   .hero-inner {
-    flex-direction: column;
-    text-align: center;
-  }
-  .hero-img {
-    margin-top: 20px;
-  }
-  .header-btn {
-  display: none;
-  }
-}
-</style>
-  <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/42066b7e49906e869ef0776c3/3a5ca6d2ceaaf376041548dc2.js");</script><meta charset="UTF-8" />
-
+  <!-- Mailchimp -->
+  <script id="mcjs">
+    !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}
+    (document,"script","https://chimpstatic.com/mcjs-connected/js/users/42066b7e49906e869ef0776c3/3a5ca6d2ceaaf376041548dc2.js");
+  </script>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header id="header">
-  <div class="header-inner">
-    <div class="logo">
-      <div class="logo-top" id="logoAnim"></div>
-      <div class="logo-bottom">- GAMES -</div>
+  <!-- HEADER -->
+  <header id="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-top" id="logoAnim"></div>
+        <div class="logo-bottom">- GAMES -</div>
+      </div>
+      <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="header-btn">Subscribe Today!</a>
     </div>
+  </header>
 
-    <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="header-btn">Subscribe Today!</a>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="container hero-inner">
-    <div class="hero-text fade-up">
-      <h1 class="hero-title">Chick'n Nugget</h1>
-      <p class="hero-desc" style="font-weight:bold; margin-top:-10px;">THE CARD GAME!</p>
-      <p class="hero-desc">A fun, exciting new tabletop experience — launching soon on Kickstarter!</p>
-      <div class="hero-button"> <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a></div>
-      <div class="hero-button"> <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-survey" style="display: none;">Subscribe to Newsletter!</a></div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text fade-up">
+        <h1 class="hero-title">Chick'n Nugget</h1>
+        <p class="hero-desc" style="font-weight:bold; margin-top:-10px;">THE CARD GAME!</p>
+        <p class="hero-desc">A fun, exciting new tabletop experience — launching soon on Kickstarter!</p>
+        <div class="hero-button"> 
+          <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a>
+        </div>
+      </div>
+      <div class="hero-img fade-up">
+        <img src="images/ChicknNugget-Banner2.png" alt="chicknnugget" width="400">
+      </div>
+      <p style="text-align: center;"><strong>Subscribe today to receive the latest updates on the launch of the CHICK'N NUGGET Card Game!</strong></p>
     </div>
-    <div class="hero-img fade-up">
-      <img src="ChicknNugget-Banner2.png" alt="chicknnugget" width="400" >
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section fade-up">
+    <div class="container about-inner">
+      <h2>About FamFav Games!</h2>
+      <p>Fun, strategic and full of surprises - this game was created by kids (along with their parents) and we're excited to share it with you!</p>
+      <p>Our mission at FamFav Games is to create fun and interactive games for people of all ages to enjoy! We truly believe our first game is going to be one of your family favorites for many years!</p>
+      <div class="about-images">
+        <div class="img-box fade-up">Image 1</div>
+        <div class="img-box fade-up">Image 2</div>
+        <div class="img-box fade-up">Image 3</div>
+      </div>
+      <div class="hero-button">
+        <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a>
+      </div>
     </div>
-         <p style="text-align: center;"><strong>Subscribe today to receive the latest updates on the launch of the CHICK'N NUGGET Card Game!</strong></p>
+  </section>
 
-  </div>
-</section>
+  <footer>
+    © 2025 FamFav Games — All rights reserved.
+  </footer>
 
-<!-- ABOUT -->
-<section class="about-section fade-up">
-  <div class="container about-inner">
-    <h2>About FamFav Games!</h2>
-    <p>Fun, strategic and full of surprises - this game was created by kids (along with their parents) and we're excited to share it with you! </p>
-    <p>Our mission at FamFav Games is to create fun and interactive games for people of all ages to enjoy! We truly believe our first game is going to be one of your family favorites for many years!</p>
-    <div class="about-images">
-      <div class="img-box fade-up">Image 1</div>
-      <div class="img-box fade-up">Image 2</div>
-      <div class="img-box fade-up">Image 3</div>
-    </div>
-    <p>
-        <div class="hero-button"> <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a></div>
-</p>
-  </div>
-</section>
-
-<footer>
-  © 2025 FamFav Games — All rights reserved.
-</footer>
-
-<script>
-// LETTER-BY-LETTER LOGO ANIMATION
-const logoText = "FamFav";
-const logoContainer = document.getElementById("logoAnim");
-
-[...logoText].forEach((letter, i) => {
-  const span = document.createElement("span");
-  span.textContent = letter;
-  logoContainer.appendChild(span);
-});
-
-// HEADER SCROLL EFFECT
-const header = document.getElementById("header");
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) header.classList.add("scrolled");
-  else header.classList.remove("scrolled");
-});
-</script>
-
+  <!-- Scripts -->
+  <script src="js/script.js"></script>
 </body>
 </html>
