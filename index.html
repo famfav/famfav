@@ -88,7 +88,7 @@ header.scrolled {
   font-weight: 800;
 }
 
-/* Kickstarter button */
+/* Buttons */
 .header-btn {
   background: #ff6a00;
   padding: 10px 22px;
@@ -100,6 +100,42 @@ header.scrolled {
   white-space: nowrap;
 }
 .header-btn:hover {
+  opacity: 0.8;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* Hero button variations */
+.btn-kickstarter {
+  background: #ff6a00;
+  color: #fff;
+}
+
+.btn-white {
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.btn-white:hover {
+  opacity: 0.8;
+}
+
+.btn-purple {
+  background: #7b3fe4;
+  color: #fff;
+  border: 2px solid #7b3fe4;
+}
+
+.btn-purple:hover {
   opacity: 0.8;
 }
 
@@ -137,29 +173,10 @@ header.scrolled {
 }
 
 .hero-button {
-  display: inline;
-  margin: 15px 15px 0px 0px;
-}
-
-.btn {
-  padding: 14px 28px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.25s;
-  display: inline-block;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
   margin-bottom: 20px;
-}
-
-.btn-kickstarter {
-  background: #ff6a00;
-  color: #fff;
-}
-
-.btn-survey {
-  background: #fff;
-  border: 2px solid #000;
-  color: #000;
 }
 
 .hero-img {
@@ -262,6 +279,9 @@ footer {
   .header-btn {
     display: none;
   }
+  .hero-button {
+    justify-content: center;
+  }
 }
 </style>
 </head>
@@ -287,6 +307,8 @@ footer {
       <p class="hero-desc" style="font-weight:bold; margin-top:-10px;">THE CARD GAME!</p>
       <p class="hero-desc">A fun, exciting new tabletop experience — launching soon on Kickstarter!</p>
       <div class="hero-button">
+        <a href="#about" class="btn btn-white">Learn More</a>
+        <a href="https://forms.gle/YOUR_GOOGLE_FORM" class="btn btn-purple" target="_blank">Take Survey</a>
         <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a>
       </div>
     </div>
@@ -366,5 +388,6 @@ readMoreBtn.addEventListener("click", () => {
   }
 });
 </script>
+
 </body>
 </html>
