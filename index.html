@@ -19,6 +19,7 @@ body {
   font-family: Inter, sans-serif;
   background: #000000;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* Limit content width */
@@ -60,7 +61,7 @@ header.scrolled {
   flex-direction: column;
   align-items: center;
   line-height: 1;
-  cursor: default;
+  cursor: pointer; /* clickable */
 }
 
 .logo-top {
@@ -80,11 +81,11 @@ header.scrolled {
 }
 
 .logo-bottom {
-    font-size: 13px;
-    letter-spacing: 1px;
-    margin-top: -5px;
-    text-transform: uppercase;
-    font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-top: -5px;
+  text-transform: uppercase;
+  font-weight: 800;
 }
 
 /* Kickstarter button */
@@ -136,8 +137,8 @@ header.scrolled {
 }
 
 .hero-button {
-    display: inline;
-    margin: 15px 15px 0px 0px;
+  display: inline;
+  margin: 15px 15px 0px 0px;
 }
 
 .btn {
@@ -222,6 +223,17 @@ header.scrolled {
   transform: translateY(0);
 }
 
+/* Read More content (hidden initially) */
+.read-more-content {
+  display: none;
+  margin-top: 20px;
+  transition: max-height 0.5s ease;
+}
+
+.read-more-content.show {
+  display: block;
+}
+
 /* FOOTER */
 footer {
   text-align: center;
@@ -240,7 +252,7 @@ footer {
  .header-inner {
      display: block;
  }
-   .hero-inner {
+ .hero-inner {
     flex-direction: column;
     text-align: center;
   }
@@ -248,12 +260,10 @@ footer {
     margin-top: 20px;
   }
   .header-btn {
-  display: none;
+    display: none;
   }
 }
 </style>
-  <script id="mcjs">!function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}(document,"script","https://chimpstatic.com/mcjs-connected/js/users/42066b7e49906e869ef0776c3/3a5ca6d2ceaaf376041548dc2.js");</script><meta charset="UTF-8" />
-
 </head>
 
 <body>
@@ -261,47 +271,55 @@ footer {
 <!-- HEADER -->
 <header id="header">
   <div class="header-inner">
-    <div class="logo">
+    <div class="logo" id="logo">
       <div class="logo-top" id="logoAnim"></div>
       <div class="logo-bottom">- GAMES -</div>
     </div>
-
     <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="header-btn">Subscribe Today!</a>
   </div>
 </header>
 
 <!-- HERO -->
-<section class="hero">
+<section class="hero" id="top">
   <div class="container hero-inner">
     <div class="hero-text fade-up">
       <h1 class="hero-title">Chick'n Nugget</h1>
       <p class="hero-desc" style="font-weight:bold; margin-top:-10px;">THE CARD GAME!</p>
       <p class="hero-desc">A fun, exciting new tabletop experience — launching soon on Kickstarter!</p>
-      <div class="hero-button"> <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a></div>
-      <div class="hero-button"> <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-survey" style="display: none;">Subscribe to Newsletter!</a></div>
+      <div class="hero-button">
+        <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a>
+      </div>
     </div>
     <div class="hero-img fade-up">
       <img src="ChicknNugget-Banner2.png" alt="chicknnugget" width="400" >
     </div>
-         <p style="text-align: center;"><strong>Subscribe today to receive the latest updates on the launch of the CHICK'N NUGGET Card Game!</strong></p>
-
+    <p style="text-align: center;"><strong>Subscribe today to receive the latest updates on the launch of the CHICK'N NUGGET Card Game!</strong></p>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section class="about-section fade-up">
+<section class="about-section fade-up" id="about">
   <div class="container about-inner">
     <h2>About FamFav Games!</h2>
-    <p>Fun, strategic and full of surprises - this game was created by kids (along with their parents) and we're excited to share it with you! </p>
+    <p>Fun, strategic and full of surprises - this game was created by kids (along with their parents) and we're excited to share it with you!</p>
     <p>Our mission at FamFav Games is to create fun and interactive games for people of all ages to enjoy! We truly believe our first game is going to be one of your family favorites for many years!</p>
+    
     <div class="about-images">
       <div class="img-box fade-up">Image 1</div>
       <div class="img-box fade-up">Image 2</div>
       <div class="img-box fade-up">Image 3</div>
     </div>
-    <p>
-        <div class="hero-button"> <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a></div>
-</p>
+
+    <!-- Read More hidden content -->
+    <div class="read-more-content" id="moreAbout">
+      <p>Here is some additional information about FamFav Games! More images and text can go here.</p>
+      <div class="about-images">
+        <div class="img-box">Image 4</div>
+        <div class="img-box">Image 5</div>
+      </div>
+    </div>
+
+    <button class="btn btn-kickstarter" id="readMoreBtn">Read More</button>
   </div>
 </section>
 
@@ -314,7 +332,7 @@ footer {
 const logoText = "FamFav";
 const logoContainer = document.getElementById("logoAnim");
 
-[...logoText].forEach((letter, i) => {
+[...logoText].forEach((letter) => {
   const span = document.createElement("span");
   span.textContent = letter;
   logoContainer.appendChild(span);
@@ -326,7 +344,27 @@ window.addEventListener("scroll", () => {
   if (window.scrollY > 50) header.classList.add("scrolled");
   else header.classList.remove("scrolled");
 });
-</script>
 
+// LOGO CLICK TO TOP
+const logo = document.getElementById("logo");
+logo.addEventListener("click", () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// READ MORE TOGGLE
+const readMoreBtn = document.getElementById("readMoreBtn");
+const moreAbout = document.getElementById("moreAbout");
+
+readMoreBtn.addEventListener("click", () => {
+  moreAbout.classList.toggle("show");
+  if (moreAbout.classList.contains("show")) {
+    readMoreBtn.textContent = "Show Less";
+    moreAbout.scrollIntoView({ behavior: "smooth", block: "start" });
+  } else {
+    readMoreBtn.textContent = "Read More";
+    document.getElementById("about").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+</script>
 </body>
 </html>
