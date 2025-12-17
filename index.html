@@ -10,14 +10,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/style.css">
-
-  <!-- Mailchimp -->
-  <script id="mcjs">
-    !function(c,h,i,m,p){m=c.createElement(h),p=c.getElementsByTagName(h)[0],m.async=1,m.src=i,p.parentNode.insertBefore(m,p)}
-    (document,"script","https://chimpstatic.com/mcjs-connected/js/users/42066b7e49906e869ef0776c3/3a5ca6d2ceaaf376041548dc2.js");
-  </script>
 </head>
-
 <body>
 
   <!-- HEADER -->
@@ -27,45 +20,76 @@
         <div class="logo-top" id="logoAnim"></div>
         <div class="logo-bottom">- GAMES -</div>
       </div>
-      <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="header-btn">Subscribe Today!</a>
+      <nav class="nav-menu">
+        <a href="#hero">Home</a>
+        <button class="header-btn modal-btn" data-modal="aboutModal1">About</button>
+        <button class="header-btn modal-btn" data-modal="aboutModal2">Popup 2</button>
+        <button class="header-btn modal-btn" data-modal="aboutModal3">Popup 3</button>
+        <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="header-btn">Subscribe</a>
+      </nav>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="container hero-inner">
       <div class="hero-text fade-up">
         <h1 class="hero-title">Chick'n Nugget</h1>
         <p class="hero-desc" style="font-weight:bold; margin-top:-10px;">THE CARD GAME!</p>
         <p class="hero-desc">A fun, exciting new tabletop experience — launching soon on Kickstarter!</p>
-        <div class="hero-button"> 
+        <div class="hero-button">
           <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a>
         </div>
       </div>
       <div class="hero-img fade-up">
         <img src="images/ChicknNugget-Banner2.png" alt="chicknnugget" width="400">
       </div>
-      <p style="text-align: center;"><strong>Subscribe today to receive the latest updates on the launch of the CHICK'N NUGGET Card Game!</strong></p>
     </div>
   </section>
- 
-  <!-- ABOUT -->
-  <section class="about-section fade-up">
-    <div class="container about-inner">
+
+  <!-- MODALS -->
+  <!-- Modal 1 -->
+  <div id="aboutModal1" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
       <h2>About FamFav Games!</h2>
       <p>Fun, strategic and full of surprises - this game was created by kids (along with their parents) and we're excited to share it with you!</p>
       <p>Our mission at FamFav Games is to create fun and interactive games for people of all ages to enjoy! We truly believe our first game is going to be one of your family favorites for many years!</p>
       <div class="about-images">
-        <div class="img-box fade-up">Image 1</div>
-        <div class="img-box fade-up">Image 2</div>
-        <div class="img-box fade-up">Image 3</div>
-      </div>
-      <div class="hero-button">
-        <a href="https://mailchi.mp/07d059bb9a98/famfav-chicknnugget" class="btn btn-kickstarter">Subscribe Today!</a>
+        <div class="img-box">Image 1</div>
+        <div class="img-box">Image 2</div>
+        <div class="img-box">Image 3</div>
       </div>
     </div>
-  </section>
+  </div>
 
+  <!-- Modal 2 -->
+  <div id="aboutModal2" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Popup 2</h2>
+      <p>This is placeholder text for the second pop-up. You can add more information or images here.</p>
+      <div class="about-images">
+        <div class="img-box">Image A</div>
+        <div class="img-box">Image B</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3 -->
+  <div id="aboutModal3" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Popup 3</h2>
+      <p>This is placeholder text for the third pop-up. Add content as needed.</p>
+      <div class="about-images">
+        <div class="img-box">Image X</div>
+        <div class="img-box">Image Y</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
   <footer>
     © 2025 FamFav Games — All rights reserved.
   </footer>
